@@ -6,11 +6,12 @@
     <General>
       <SessionStorage Value="InProjectDir"/>
       <MainUnit Value="0"/>
-      <Title Value="TestEnvironmentoptions"/>
+      <Title Value="fpcLazTestEnvironmentOpts"/>
       <ResourceType Value="res"/>
       <UseXPManifest Value="True"/>
       <Icon Value="0"/>
     </General>
+    <LazDoc Paths="..\FPDoc"/>
     <BuildModes Count="3">
       <Item1 Name="Default" Default="True"/>
       <Item2 Name="Debug">
@@ -94,7 +95,7 @@
         <FormatVersion Value="1"/>
       </local>
     </RunParams>
-    <RequiredPackages Count="5">
+    <RequiredPackages Count="6">
       <Item1>
         <PackageName Value="DebuggerIntf"/>
       </Item1>
@@ -102,37 +103,32 @@
         <PackageName Value="IDEIntf"/>
       </Item2>
       <Item3>
-        <PackageName Value="LCLBase"/>
+        <PackageName Value="CodeTools"/>
       </Item3>
       <Item4>
-        <PackageName Value="CodeTools"/>
+        <PackageName Value="fpcunittestrunner"/>
       </Item4>
       <Item5>
         <PackageName Value="LCL"/>
       </Item5>
+      <Item6>
+        <PackageName Value="FCL"/>
+      </Item6>
     </RequiredPackages>
-    <Units Count="4">
+    <Units Count="3">
       <Unit0>
-        <Filename Value="TestEnvironmentoptions.lpr"/>
+        <Filename Value="fpcLazTestEnvironmentOpts.lpr"/>
         <IsPartOfProject Value="True"/>
       </Unit0>
       <Unit1>
-        <Filename Value="..\Source\EnvironmentOptions\frm_TestEnvironmentOptionsMain.pas"/>
+        <Filename Value="..\Source\EnvironmentOptions\TestLazEnvironmentOpts.pas"/>
         <IsPartOfProject Value="True"/>
-        <ComponentName Value="Form1"/>
-        <HasResources Value="True"/>
-        <ResourceBaseClass Value="Form"/>
       </Unit1>
       <Unit2>
         <Filename Value="..\..\LazTrunc_\ide\environmentopts.pp"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="EnvironmentOpts"/>
       </Unit2>
-      <Unit3>
-        <Filename Value="..\..\LazTrunc_\ide\idetranslations.pas"/>
-        <IsPartOfProject Value="True"/>
-        <UnitName Value="IDETranslations"/>
-      </Unit3>
     </Units>
   </ProjectOptions>
   <CompilerOptions>

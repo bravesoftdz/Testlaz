@@ -9,6 +9,7 @@ object Form1: TForm1
   ClientWidth = 536
   OnCreate = FormCreate
   OnDestroy = FormDestroy
+  LCLVersion = '1.8.0.2'
   Visible = False
   object btnLoadEnv: TButton
     Left = 8

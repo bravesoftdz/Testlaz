@@ -48,6 +48,14 @@ implementation
 
 {$R *.lfm}
 
+const
+  cData = 'Data';
+  cTestEnvironment = '%sTestEnvironment';
+  cEnvironmentoptions_newXml = 'environmentoptions_new.xml';
+
+resourceString
+  rsEnterNewName = 'Enter new Name';
+
 { TForm1 }
 
 procedure TForm1.FormCreate(Sender: TObject);
@@ -55,20 +63,21 @@ var
   i: Integer;
 begin
   FEnvironmentOptions:=TEnvironmentOptions.Create;
-  FDataPath:='Data';
+  FDataPath:=cData;
   for i := 0 to 2 do
     if DirectoryExists(FDataPath) then
       break
     else
       FDataPath:= '..'+DirectorySeparator+FDataPath;
-  FDataPath:=FDataPath+DirectorySeparator+'TestEnvironment';
+  FDataPath:=Format(cTestEnvironment, [FDataPath+DirectorySeparator]);
 end;
 
 procedure TForm1.btnLoadEnvClick(Sender: TObject);
 var
   p: TDesktopOpt;
 begin
-  FEnvironmentOptions.Filename:=FDataPath+DirectorySeparator+'environmentoptions_new.xml';
+  FEnvironmentOptions.Filename:=FDataPath+DirectorySeparator+
+    cEnvironmentoptions_newXml;
   FEnvironmentOptions.load(false);
   ListBox1.clear;
   for pointer(p) in FEnvironmentOptions.Desktops do
@@ -77,22 +86,19 @@ end;
 
 procedure TForm1.btnDeleteDTClick(Sender: TObject);
 var
-  lnd: TDesktopOpt;
   lidx: Integer;
 begin
   if ListBox1.ItemIndex >=0 then
     begin;
-      lnd := TDesktopOpt(ListBox1.Items.Objects[ListBox1.ItemIndex]);
       lidx := FEnvironmentOptions.Desktops.IndexOf(ListBox1.Items[ListBox1.ItemIndex]);
       FEnvironmentOptions.Desktops.Delete(lidx);
-     // freeandnil(lnd);
       ListBox1.DeleteSelected;
     end;
 end;
 
 procedure TForm1.btnSaveEnvClick(Sender: TObject);
 begin
-  FEnvironmentOptions.Filename:=FDataPath+DirectorySeparator+'environmentoptions_new.xml';
+  FEnvironmentOptions.Filename:=FDataPath+DirectorySeparator+cEnvironmentoptions_newXml;
   FEnvironmentOptions.Save(false);
 end;
 
@@ -100,7 +106,7 @@ procedure TForm1.btnNewDTClick(Sender: TObject);
 begin
   edtDesktopName.Text:='';
   edtDesktopName.Tag:=0;
-  edtDesktopName.TextHint:='Enter new Name';
+  edtDesktopName.TextHint:=rsEnterNewName;
   edtDesktopName.visible := true;
 end;
 
