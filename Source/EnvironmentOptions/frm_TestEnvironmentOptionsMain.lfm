@@ -1,0 +1,84 @@
+object Form1: TForm1
+  Left = 0
+  Height = 255
+  Top = 0
+  Width = 536
+  ActiveControl = btnLoadEnv
+  Caption = 'Form1'
+  ClientHeight = 255
+  ClientWidth = 536
+  OnCreate = FormCreate
+  OnDestroy = FormDestroy
+  Visible = False
+  object btnLoadEnv: TButton
+    Left = 8
+    Height = 25
+    Top = 40
+    Width = 75
+    Caption = 'Load'
+    OnClick = btnLoadEnvClick
+    TabOrder = 0
+  end
+  object edtDirectory: TEdit
+    Left = 8
+    Height = 23
+    Top = 8
+    Width = 472
+    TabOrder = 1
+    Text = 'edtDirectory'
+  end
+  object btnSelectDir: TSpeedButton
+    Left = 489
+    Height = 22
+    Top = 8
+    Width = 23
+  end
+  object btnSaveEnv: TButton
+    Left = 8
+    Height = 25
+    Top = 72
+    Width = 75
+    Caption = 'Save'
+    OnClick = btnSaveEnvClick
+    TabOrder = 2
+  end
+  object ListBox1: TListBox
+    Left = 90
+    Height = 196
+    Top = 41
+    Width = 160
+    ItemHeight = 0
+    OnDblClick = ListBox1DblClick
+    OnKeyPress = ListBox1KeyPress
+    TabOrder = 3
+  end
+  object btnNewDT: TButton
+    Left = 256
+    Height = 25
+    Top = 42
+    Width = 75
+    Caption = 'New DT'
+    OnClick = btnNewDTClick
+    TabOrder = 4
+  end
+  object btnDeleteDT: TButton
+    Left = 256
+    Height = 25
+    Top = 72
+    Width = 75
+    Caption = 'Delete'
+    OnClick = btnDeleteDTClick
+    TabOrder = 5
+  end
+  object edtDesktopName: TEdit
+    Left = 90
+    Height = 23
+    Top = 112
+    Width = 160
+    OnExit = edtDesktopNameExit
+    OnKeyPress = edtDesktopNameKeyPress
+    TabOrder = 6
+    Text = 'edtDesktopName'
+    Visible = False
+  end
+end
