@@ -62,9 +62,9 @@ begin
   FEnvironmentOptions.Filename:=FDataPath + DirectorySeparator+ cEnvironmentoptionsXml;
   FEnvironmentOptions.Load(false);
   CheckEquals(4,FEnvironmentOptions.Desktops.Count,'There should be 4 Desktops');
-  CheckEquals(true,FEnvironmentOptions.AskForFilenameOnNewFile,'AskForFilenameOnNewFile should be true');
-  CheckEquals('',FEnvironmentOptions.ActiveDesktopName,'ActiveDesktopName');
-  CheckEquals(true,FEnvironmentOptions.AskSaveSessionOnly,'AskSaveSessionOnly');
+  CheckEquals(false,FEnvironmentOptions.AskForFilenameOnNewFile,'AskForFilenameOnNewFile should be true');
+  CheckEquals('default',FEnvironmentOptions.ActiveDesktopName,'ActiveDesktopName');
+  CheckEquals(false,FEnvironmentOptions.AskSaveSessionOnly,'AskSaveSessionOnly');
   CheckEquals(true,FEnvironmentOptions.AutoCloseCompileDialog,'AutoCloseCompileDialog');
   CheckEquals(true,FEnvironmentOptions.AutoSaveActiveDesktop,'AutoSaveActiveDesktop');
 end;
