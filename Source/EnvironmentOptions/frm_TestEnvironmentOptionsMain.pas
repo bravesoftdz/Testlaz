@@ -75,7 +75,7 @@ end;
 
 procedure TfrmTestEnvironmentOptMain.btnLoadEnvClick(Sender: TObject);
 var
-  p: TDesktopOpt;
+  p: TAbstractDesktopOpt;
 begin
   FEnvironmentOptions.Filename:=FDataPath+DirectorySeparator+
     cEnvironmentoptionsXml;
@@ -118,7 +118,7 @@ end;
 
 procedure TfrmTestEnvironmentOptMain.edtDesktopNameKeyPress(Sender: TObject; var Key: char);
 var
-  lnd: TDesktopOpt;
+  lnd: TAbstractDesktopOpt;
   lix: Integer;
 begin
   if key = #27 then
