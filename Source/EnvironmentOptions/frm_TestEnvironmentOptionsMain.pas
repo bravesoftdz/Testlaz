@@ -12,9 +12,9 @@ uses
 
 type
 
-  { TForm1 }
+  { TfrmTestEnvironmentOptMain }
 
-  TForm1 = class(TForm)
+  TfrmTestEnvironmentOptMain = class(TForm)
     btnLoadEnv: TButton;
     btnSaveEnv: TButton;
     btnNewDT: TButton;
@@ -42,7 +42,7 @@ type
   end;
 
 var
-  Form1: TForm1;
+  frmTestEnvironmentOptMain: TfrmTestEnvironmentOptMain;
 
 implementation
 
@@ -51,14 +51,15 @@ implementation
 const
   cData = 'Data';
   cTestEnvironment = '%sTestEnvironment';
+  cEnvironmentoptionsXml = 'environmentoptions.xml';
   cEnvironmentoptions_newXml = 'environmentoptions_new.xml';
 
 resourceString
   rsEnterNewName = 'Enter new Name';
 
-{ TForm1 }
+{ TfrmTestEnvironmentOptMain }
 
-procedure TForm1.FormCreate(Sender: TObject);
+procedure TfrmTestEnvironmentOptMain.FormCreate(Sender: TObject);
 var
   i: Integer;
 begin
@@ -72,19 +73,19 @@ begin
   FDataPath:=Format(cTestEnvironment, [FDataPath+DirectorySeparator]);
 end;
 
-procedure TForm1.btnLoadEnvClick(Sender: TObject);
+procedure TfrmTestEnvironmentOptMain.btnLoadEnvClick(Sender: TObject);
 var
   p: TDesktopOpt;
 begin
   FEnvironmentOptions.Filename:=FDataPath+DirectorySeparator+
-    cEnvironmentoptions_newXml;
+    cEnvironmentoptionsXml;
   FEnvironmentOptions.load(false);
   ListBox1.clear;
   for pointer(p) in FEnvironmentOptions.Desktops do
     ListBox1.AddItem(p.Name,p);
 end;
 
-procedure TForm1.btnDeleteDTClick(Sender: TObject);
+procedure TfrmTestEnvironmentOptMain.btnDeleteDTClick(Sender: TObject);
 var
   lidx: Integer;
 begin
@@ -96,13 +97,13 @@ begin
     end;
 end;
 
-procedure TForm1.btnSaveEnvClick(Sender: TObject);
+procedure TfrmTestEnvironmentOptMain.btnSaveEnvClick(Sender: TObject);
 begin
   FEnvironmentOptions.Filename:=FDataPath+DirectorySeparator+cEnvironmentoptions_newXml;
   FEnvironmentOptions.Save(false);
 end;
 
-procedure TForm1.btnNewDTClick(Sender: TObject);
+procedure TfrmTestEnvironmentOptMain.btnNewDTClick(Sender: TObject);
 begin
   edtDesktopName.Text:='';
   edtDesktopName.Tag:=0;
@@ -110,12 +111,12 @@ begin
   edtDesktopName.visible := true;
 end;
 
-procedure TForm1.edtDesktopNameExit(Sender: TObject);
+procedure TfrmTestEnvironmentOptMain.edtDesktopNameExit(Sender: TObject);
 begin
   edtDesktopName.Visible:=false;
 end;
 
-procedure TForm1.edtDesktopNameKeyPress(Sender: TObject; var Key: char);
+procedure TfrmTestEnvironmentOptMain.edtDesktopNameKeyPress(Sender: TObject; var Key: char);
 var
   lnd: TDesktopOpt;
   lix: Integer;
@@ -148,17 +149,17 @@ begin
 
 end;
 
-procedure TForm1.FormDestroy(Sender: TObject);
+procedure TfrmTestEnvironmentOptMain.FormDestroy(Sender: TObject);
 begin
   FreeAndNil(FEnvironmentOptions);
 end;
 
-procedure TForm1.ListBox1DblClick(Sender: TObject);
+procedure TfrmTestEnvironmentOptMain.ListBox1DblClick(Sender: TObject);
 begin
   ActivateInplaceEditor;
 end;
 
-procedure TForm1.ListBox1KeyPress(Sender: TObject; var Key: char);
+procedure TfrmTestEnvironmentOptMain.ListBox1KeyPress(Sender: TObject; var Key: char);
 begin
   if key = #29 then
     begin
@@ -166,7 +167,7 @@ begin
     end;
 end;
 
-procedure TForm1.ActivateInplaceEditor;
+procedure TfrmTestEnvironmentOptMain.ActivateInplaceEditor;
 begin
   edtDesktopName.top := ListBox1.ItemRect(ListBox1.ItemIndex).top+ListBox1.top-1;
   edtDesktopName.Text:=ListBox1.Items[ListBox1.ItemIndex];

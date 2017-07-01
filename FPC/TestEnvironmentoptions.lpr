@@ -27,7 +27,7 @@ begin
   OnGetVendorName:=@VendorName;
   OnGetApplicationName:=@ApplicationName;
   Application.Initialize;
-  Application.CreateForm(TForm1, Form1);
+  Application.CreateForm(TfrmTestEnvironmentOptMain, frmTestEnvironmentOptMain);
   Application.Run;
 end.
 

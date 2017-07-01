@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<fpdoc-descriptions><package name="fpcLazTestEnvironmentOpts"><module name="EnvironmentOpts"><short>This unit defines a class to store the options in a xml file. </short>
+<fpdoc-descriptions><package name="fpcLazTestEnvironmentOpts"><module name="EnvironmentOpts"><short>This unit defines a class to store the options in a xml file. </short><element name="TBaseExternalUserTools"><short>External Tools - the user menu items in the Tools menu</short>
+      </element><element name="TDesktopOpt.Create"><short>Create Desktop options and set some default values.</short>
+      </element>
     </module>
   </package>
 </fpdoc-descriptions>

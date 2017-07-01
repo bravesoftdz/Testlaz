@@ -1,10 +1,10 @@
-object Form1: TForm1
+object frmTestEnvironmentOptMain: TfrmTestEnvironmentOptMain
   Left = 0
   Height = 255
   Top = 0
   Width = 536
   ActiveControl = btnLoadEnv
-  Caption = 'Form1'
+  Caption = 'frmTestEnvironmentOptMain'
   ClientHeight = 255
   ClientWidth = 536
   OnCreate = FormCreate

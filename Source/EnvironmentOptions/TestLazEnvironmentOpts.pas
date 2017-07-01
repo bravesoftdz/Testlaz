@@ -6,7 +6,7 @@ unit TestLazEnvironmentOpts;
 interface
 
 uses
-  Classes, SysUtils,
+  Classes, SysUtils, FileUtil,
   // fpc-unit-test-framework
   fpcunit, testutils, testregistry,
   // Lazarus-IDE
@@ -26,6 +26,8 @@ type
     procedure TearDown; override;
   published
     procedure TestSetUp;
+    Procedure LoadEnvironment;
+    Procedure LoadNewEnvironment;
   end;
 
 implementation
@@ -33,6 +35,7 @@ implementation
 const
     cData = 'Data';
     cTestEnvironment = 'TestEnvironment';
+    cEnvironmentoptionsXml = 'environmentoptions.xml';
     cEnvironmentoptions_newXml = 'environmentoptions_new.xml';
 
 resourcestring
@@ -48,8 +51,34 @@ begin
   CheckIs(FEnvironmentOptions, TEnvironmentOptions,
     rsFEnvironmentOptionsClassIsTEnvironmentOptions );
   CheckTrue(DirectoryExists(FDataPath), Format(rsFDatapathExists, [FDataPath]));
+  CheckTrue(FileExists(FDataPath+DirectorySeparator+cEnvironmentoptionsXml),
+    Format(rsTestfileExists, [cEnvironmentoptionsXml]));
   CheckTrue(FileExists(FDataPath+DirectorySeparator+cEnvironmentoptions_newXml),
     Format(rsTestfileExists, [cEnvironmentoptions_newXml]));
+end;
+
+procedure TTestLazEnvironmentOpts.LoadEnvironment;
+begin
+  FEnvironmentOptions.Filename:=FDataPath + DirectorySeparator+ cEnvironmentoptionsXml;
+  FEnvironmentOptions.Load(false);
+  CheckEquals(4,FEnvironmentOptions.Desktops.Count,'There should be 4 Desktops');
+  CheckEquals(true,FEnvironmentOptions.AskForFilenameOnNewFile,'AskForFilenameOnNewFile should be true');
+  CheckEquals('',FEnvironmentOptions.ActiveDesktopName,'ActiveDesktopName');
+  CheckEquals(true,FEnvironmentOptions.AskSaveSessionOnly,'AskSaveSessionOnly');
+  CheckEquals(true,FEnvironmentOptions.AutoCloseCompileDialog,'AutoCloseCompileDialog');
+  CheckEquals(true,FEnvironmentOptions.AutoSaveActiveDesktop,'AutoSaveActiveDesktop');
+end;
+
+procedure TTestLazEnvironmentOpts.LoadNewEnvironment;
+begin
+  if FileExists(FDataPath + DirectorySeparator+ cEnvironmentoptions_newXml) then
+    DeleteFile(FDataPath + DirectorySeparator+ cEnvironmentoptions_newXml);
+  FileUtil.CopyFile(
+    FDataPath + DirectorySeparator+ cEnvironmentoptionsXml,
+    FDataPath + DirectorySeparator+ cEnvironmentoptions_newXml,true);
+  FEnvironmentOptions.Filename:=FDataPath + DirectorySeparator+ cEnvironmentoptions_newXml;
+  FEnvironmentOptions.Load(false);
+  CheckEquals(4,FEnvironmentOptions.Desktops.Count,'There should be 4 Desktops');
 end;
 
 procedure TTestLazEnvironmentOpts.SetUp;
