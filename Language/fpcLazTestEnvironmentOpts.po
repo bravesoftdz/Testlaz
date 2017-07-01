@@ -1,0 +1,19 @@
+msgid ""
+msgstr "Content-Type: text/plain; charset=UTF-8"
+
+#: testlazenvironmentopts.rsfdatapathexists
+msgid "FDatapath:'%s' exists"
+msgstr ""
+
+#: testlazenvironmentopts.rsfenvironmentoptionsclassistenvironmentoptions
+msgid "FEnvironmentOptions class is TEnvironmentOptions"
+msgstr ""
+
+#: testlazenvironmentopts.rsfenvironmentoptionsisassigned
+msgid "FEnvironmentOptions is assigned"
+msgstr ""
+
+#: testlazenvironmentopts.rstestfileexists
+msgid "Testfile:'%s' exists"
+msgstr ""
+

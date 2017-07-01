@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<fpdoc-descriptions><package name="fpcLazTestEnvironmentOpts"><module name="EnvironmentOpts"><short>This unit defines a class to store the options in a xml file. </short>
+    </module>
+  </package>
+</fpdoc-descriptions>

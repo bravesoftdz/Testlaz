@@ -1,5 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <fpdoc-descriptions><package name="fpcLazTestEnvironmentOpts"><module name="TestLazEnvironmentOpts"><element name="cData"><short>Datapath constant </short>
+      </element><short>Unit-Test-Case for TEnvironmentOptions-Class</short><element name="TTestLazEnvironmentOpts.SetUp"><short>This method will SetUp then TestEnvironment</short><descr>It initializes FEnvironmentOptions and sets the FDataPath-variable to the right path.</descr>
+      </element><element name="TTestLazEnvironmentOpts.TearDown"><short>Clean up after the test.</short><descr>This method frees the FEnvironmentOptions - object.</descr>
+      </element><element name="TTestLazEnvironmentOpts.TestSetUp"><short>TestSetup tests the general Setup</short><descr>It tests that FEnvironmentOptions is correctly setup and the directory in FDataPath-vaiable exists.</descr>
+      </element><element name="TTestLazEnvironmentOpts"><short>Testcase for TEnvironmentOptions-Class</short>
+      </element><element name="TTestLazEnvironmentOpts.FEnvironmentOptions"><short>preinitialized TEnvironmentOptions-object</short><descr>initialized in the SetUp-method an destroyed in the TearDown-method</descr>
+      </element><element name="TTestLazEnvironmentOpts.FDataPath"><short>Path to the test-data-files</short><descr>Initialized in the SetUp-method</descr>
       </element>
     </module>
   </package>
