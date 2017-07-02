@@ -8,7 +8,7 @@ uses
   Classes, SysUtils, FileUtil, Forms, Controls, Graphics, Dialogs, StdCtrls,
   Buttons,
   // lazarus
-  EnvironmentOpts;
+  EnvironmentOpts,DesktopManager;
 
 type
 
@@ -19,6 +19,7 @@ type
     btnSaveEnv: TButton;
     btnNewDT: TButton;
     btnDeleteDT: TButton;
+    Button1: TButton;
     edtDesktopName: TEdit;
     edtDirectory: TEdit;
     btnSelectDir: TSpeedButton;
@@ -27,6 +28,7 @@ type
     procedure btnLoadEnvClick(Sender: TObject);
     procedure btnSaveEnvClick(Sender: TObject);
     procedure btnNewDTClick(Sender: TObject);
+    procedure Button1Click(Sender: TObject);
     procedure edtDesktopNameExit(Sender: TObject);
     procedure edtDesktopNameKeyPress(Sender: TObject; var Key: char);
     procedure FormCreate(Sender: TObject);
@@ -43,6 +45,7 @@ type
 
 var
   frmTestEnvironmentOptMain: TfrmTestEnvironmentOptMain;
+  DesktopForm:TdesktopForm;
 
 implementation
 
@@ -109,6 +112,12 @@ begin
   edtDesktopName.Tag:=0;
   edtDesktopName.TextHint:=rsEnterNewName;
   edtDesktopName.visible := true;
+end;
+
+procedure TfrmTestEnvironmentOptMain.Button1Click(Sender: TObject);
+begin
+  EnvironmentOptions := FEnvironmentOptions;
+  DesktopForm.show;
 end;
 
 procedure TfrmTestEnvironmentOptMain.edtDesktopNameExit(Sender: TObject);

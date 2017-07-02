@@ -7,7 +7,8 @@ uses
   cthreads,
   {$ENDIF}{$ENDIF}
   Interfaces, // this includes the LCL widgetset
-  Forms, SysUtils, IDETranslations, frm_TestEnvironmentOptionsMain
+  Forms, SysUtils, DesktopManager,
+  frm_TestEnvironmentOptionsMain
   { you can add units after this };
 
 {$R *.res}
@@ -28,6 +29,7 @@ begin
   OnGetApplicationName:=@ApplicationName;
   Application.Initialize;
   Application.CreateForm(TfrmTestEnvironmentOptMain, frmTestEnvironmentOptMain);
+  Application.CreateForm(TDesktopForm, DesktopForm);
   Application.Run;
 end.
 

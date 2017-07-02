@@ -9,7 +9,6 @@ object frmTestEnvironmentOptMain: TfrmTestEnvironmentOptMain
   ClientWidth = 536
   OnCreate = FormCreate
   OnDestroy = FormDestroy
-  LCLVersion = '1.8.0.2'
   Visible = False
   object btnLoadEnv: TButton
     Left = 8
@@ -81,5 +80,14 @@ object frmTestEnvironmentOptMain: TfrmTestEnvironmentOptMain
     TabOrder = 6
     Text = 'edtDesktopName'
     Visible = False
+  end
+  object Button1: TButton
+    Left = 256
+    Height = 38
+    Top = 160
+    Width = 88
+    Caption = 'Button1'
+    OnClick = Button1Click
+    TabOrder = 7
   end
 end
