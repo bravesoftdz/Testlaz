@@ -59,4 +59,19 @@ msgstr ""
 msgid ""
 "Compiled: %s\n"
 "#9on: %s\n"
-msgstr "Compiliert: %s #9auf: %s\n"
+msgstr "Compiliert: %s #9auf: %s"
+
+#: unt_cdate.adate
+msgctxt "unt_cdate.adate"
+msgid "02.07.2017"
+msgstr ""
+
+#: unt_cdate.cdate
+msgctxt "unt_cdate.cdate"
+msgid "02.07.2017"
+msgstr ""
+
+#: unt_cdate.cname
+msgid "SILENT-PC2"
+msgstr ""
+
