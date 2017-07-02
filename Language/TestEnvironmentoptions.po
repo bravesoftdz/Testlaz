@@ -1,0 +1,53 @@
+msgid ""
+msgstr "Content-Type: text/plain; charset=UTF-8"
+
+#: frm_testenvironmentoptionsmain.rsdesktopinfocomatible
+msgid "[%s] compatible"
+msgstr ""
+
+#: frm_testenvironmentoptionsmain.rsdesktopinfoisdocked
+msgid "[%s] docked"
+msgstr ""
+
+#: frm_testenvironmentoptionsmain.rsenternewname
+msgid "Enter new Name"
+msgstr ""
+
+#: tfrmtestenvironmentoptmain.btndeletedt.caption
+msgid "Delete"
+msgstr ""
+
+#: tfrmtestenvironmentoptmain.btnloadenv.caption
+msgid "Load"
+msgstr ""
+
+#: tfrmtestenvironmentoptmain.btnnewdt.caption
+msgid "New DT"
+msgstr ""
+
+#: tfrmtestenvironmentoptmain.btnsaveenv.caption
+msgid "Save"
+msgstr ""
+
+#: tfrmtestenvironmentoptmain.btnshowdesktopmgr.caption
+msgid "Desktop-Mgr ..."
+msgstr ""
+
+#: tfrmtestenvironmentoptmain.caption
+msgid "frmTestEnvironmentOptMain"
+msgstr ""
+
+#: tfrmtestenvironmentoptmain.edtdesktopname.text
+msgid "edtDesktopName"
+msgstr ""
+
+#: tfrmtestenvironmentoptmain.edtdirectory.text
+msgid "edtDirectory"
+msgstr ""
+
+#: tfrmtestenvironmentoptmain.lblcinfo.caption
+msgid ""
+"Compiled: %s\n"
+"#9on: %s\n"
+msgstr ""
+

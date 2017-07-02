@@ -7,6 +7,7 @@ uses
   cthreads,
   {$ENDIF}{$ENDIF}
   Interfaces, // this includes the LCL widgetset
+  unt_CDate in 'c:\unt_CDate.pas',
   Forms, SysUtils, DesktopManager,
   frm_TestEnvironmentOptionsMain
   { you can add units after this };

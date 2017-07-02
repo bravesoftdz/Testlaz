@@ -1,12 +1,12 @@
 object frmTestEnvironmentOptMain: TfrmTestEnvironmentOptMain
-  Left = 521
+  Left = 158
   Height = 255
-  Top = 780
-  Width = 536
+  Top = 409
+  Width = 524
   ActiveControl = btnLoadEnv
   Caption = 'frmTestEnvironmentOptMain'
   ClientHeight = 255
-  ClientWidth = 536
+  ClientWidth = 524
   OnCreate = FormCreate
   OnDestroy = FormDestroy
   LCLVersion = '1.9.0.0'
@@ -42,14 +42,15 @@ object frmTestEnvironmentOptMain: TfrmTestEnvironmentOptMain
     OnClick = btnSaveEnvClick
     TabOrder = 2
   end
-  object ListBox1: TListBox
+  object lbxDesktops: TListBox
     Left = 90
     Height = 196
     Top = 41
     Width = 160
     ItemHeight = 0
-    OnDblClick = ListBox1DblClick
-    OnKeyPress = ListBox1KeyPress
+    OnDblClick = lbxDesktopsDblClick
+    OnKeyPress = lbxDesktopsKeyPress
+    OnSelectionChange = lbxDesktopsSelectionChange
     TabOrder = 3
   end
   object btnNewDT: TButton
@@ -73,7 +74,7 @@ object frmTestEnvironmentOptMain: TfrmTestEnvironmentOptMain
   object edtDesktopName: TEdit
     Left = 90
     Height = 23
-    Top = 112
+    Top = 214
     Width = 160
     OnExit = edtDesktopNameExit
     OnKeyPress = edtDesktopNameKeyPress
@@ -81,13 +82,39 @@ object frmTestEnvironmentOptMain: TfrmTestEnvironmentOptMain
     Text = 'edtDesktopName'
     Visible = False
   end
-  object Button1: TButton
+  object btnShowDesktopMgr: TButton
     Left = 256
     Height = 38
     Top = 160
     Width = 88
-    Caption = 'Button1'
-    OnClick = Button1Click
+    Caption = 'Desktop-Mgr ...'
+    OnClick = btnShowDesktopMgrClick
     TabOrder = 7
+  end
+  object lblCInfo: TLabel
+    Left = 463
+    Height = 16
+    Top = 40
+    Width = 51
+    Alignment = taRightJustify
+    Anchors = [akTop, akRight]
+    Caption = 'Compiled: %s'#13#10#9'on: %s'
+    Font.Height = 8
+    Font.Name = 'Small Fonts'
+    ParentColor = False
+    ParentFont = False
+  end
+  object lblDsktpInfo: TLabel
+    Left = 90
+    Height = 1
+    Top = 239
+    Width = 1
+    ParentColor = False
+  end
+  object tmrUpdate: TTimer
+    Interval = 500
+    OnTimer = tmrUpdateTimer
+    Left = 12
+    Top = 104
   end
 end

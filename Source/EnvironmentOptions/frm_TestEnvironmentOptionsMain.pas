@@ -6,7 +6,7 @@ interface
 
 uses
   Classes, SysUtils, FileUtil, Forms, Controls, Graphics, Dialogs, StdCtrls,
-  Buttons,
+  Buttons, ExtCtrls,
   // lazarus
   EnvironmentOpts,DesktopManager;
 
@@ -19,22 +19,28 @@ type
     btnSaveEnv: TButton;
     btnNewDT: TButton;
     btnDeleteDT: TButton;
-    Button1: TButton;
+    btnShowDesktopMgr: TButton;
     edtDesktopName: TEdit;
     edtDirectory: TEdit;
     btnSelectDir: TSpeedButton;
-    ListBox1: TListBox;
+    lblDsktpInfo: TLabel;
+    lblCInfo: TLabel;
+    lbxDesktops: TListBox;
+    tmrUpdate: TTimer;
     procedure btnDeleteDTClick(Sender: TObject);
     procedure btnLoadEnvClick(Sender: TObject);
     procedure btnSaveEnvClick(Sender: TObject);
     procedure btnNewDTClick(Sender: TObject);
-    procedure Button1Click(Sender: TObject);
+    procedure btnShowDesktopMgrClick(Sender: TObject);
     procedure edtDesktopNameExit(Sender: TObject);
     procedure edtDesktopNameKeyPress(Sender: TObject; var Key: char);
     procedure FormCreate(Sender: TObject);
     procedure FormDestroy(Sender: TObject);
-    procedure ListBox1DblClick(Sender: TObject);
-    procedure ListBox1KeyPress(Sender: TObject; var Key: char);
+    procedure lbxDesktopsDblClick(Sender: TObject);
+    procedure lbxDesktopsKeyPress(Sender: TObject; var Key: char);
+    procedure lbxDesktopsSelectionChange(Sender: TObject; {%H-}User: boolean);
+    procedure tmrUpdateTimer(Sender: TObject);
+    procedure UpdateDesktopList(Sender: Tobject);
   private
      FDataPath: String;
      FEnvironmentOptions:TEnvironmentOptions;
@@ -49,6 +55,7 @@ var
 
 implementation
 
+uses unt_cdate;
 {$R *.lfm}
 
 const
@@ -59,6 +66,8 @@ const
 
 resourceString
   rsEnterNewName = 'Enter new Name';
+  rsDesktopInfoComatible = '[%s] compatible';
+  rsDesktopInfoIsDocked = '[%s] docked';
 
 { TfrmTestEnvironmentOptMain }
 
@@ -74,29 +83,26 @@ begin
     else
       FDataPath:= '..'+DirectorySeparator+FDataPath;
   FDataPath:=Format(cTestEnvironment, [FDataPath+DirectorySeparator]);
+  lblCInfo.Caption:=format(lblCInfo.Caption,[CDate,CName]);
 end;
 
 procedure TfrmTestEnvironmentOptMain.btnLoadEnvClick(Sender: TObject);
-var
-  p: TCustomDesktopOpt;
 begin
   FEnvironmentOptions.Filename:=FDataPath+DirectorySeparator+
     cEnvironmentoptionsXml;
   FEnvironmentOptions.load(false);
-  ListBox1.clear;
-  for pointer(p) in FEnvironmentOptions.Desktops do
-    ListBox1.AddItem(p.Name,p);
+  UpdateDesktopList(Sender);
 end;
 
 procedure TfrmTestEnvironmentOptMain.btnDeleteDTClick(Sender: TObject);
 var
   lidx: Integer;
 begin
-  if ListBox1.ItemIndex >=0 then
+  if lbxDesktops.ItemIndex >=0 then
     begin;
-      lidx := FEnvironmentOptions.Desktops.IndexOf(ListBox1.Items[ListBox1.ItemIndex]);
+      lidx := FEnvironmentOptions.Desktops.IndexOf(lbxDesktops.Items[lbxDesktops.ItemIndex]);
       FEnvironmentOptions.Desktops.Delete(lidx);
-      ListBox1.DeleteSelected;
+      lbxDesktops.DeleteSelected;
     end;
 end;
 
@@ -114,10 +120,11 @@ begin
   edtDesktopName.visible := true;
 end;
 
-procedure TfrmTestEnvironmentOptMain.Button1Click(Sender: TObject);
+procedure TfrmTestEnvironmentOptMain.btnShowDesktopMgrClick(Sender: TObject);
 begin
   EnvironmentOptions := FEnvironmentOptions;
   DesktopForm.show;
+  UpdateDesktopList(sender);
 end;
 
 procedure TfrmTestEnvironmentOptMain.edtDesktopNameExit(Sender: TObject);
@@ -133,7 +140,7 @@ begin
   if key = #27 then
     begin
     edtDesktopName.Visible:=false;
-     ActiveControl:= ListBox1;
+     ActiveControl:= lbxDesktops;
     end;
   if key = #13 then
     begin
@@ -142,18 +149,18 @@ begin
         begin
           lnd:= TDesktopOpt.Create(edtDesktopName.Text);
           FEnvironmentOptions.Desktops.Add(lnd);
-          ListBox1.AddItem(edtDesktopName.Text,lnd);
+          lbxDesktops.AddItem(edtDesktopName.Text,lnd);
         end
       else
         begin
           lnd := TDesktopOpt(edtDesktopName.tag);
           lnd.Name:= edtDesktopName.text;
-          lix := listbox1.Items.IndexOfObject(lnd);
+          lix := lbxDesktops.Items.IndexOfObject(lnd);
           if lix>-1 then
-            listbox1.Items[lix]:=edtDesktopName.text;
+            lbxDesktops.Items[lix]:=edtDesktopName.text;
         end;
       edtDesktopName.Visible:=false;
-     ActiveControl:= ListBox1;
+     ActiveControl:= lbxDesktops;
     end;
 
 end;
@@ -163,12 +170,12 @@ begin
   FreeAndNil(FEnvironmentOptions);
 end;
 
-procedure TfrmTestEnvironmentOptMain.ListBox1DblClick(Sender: TObject);
+procedure TfrmTestEnvironmentOptMain.lbxDesktopsDblClick(Sender: TObject);
 begin
   ActivateInplaceEditor;
 end;
 
-procedure TfrmTestEnvironmentOptMain.ListBox1KeyPress(Sender: TObject; var Key: char);
+procedure TfrmTestEnvironmentOptMain.lbxDesktopsKeyPress(Sender: TObject; var Key: char);
 begin
   if key = #29 then
     begin
@@ -176,11 +183,52 @@ begin
     end;
 end;
 
+procedure TfrmTestEnvironmentOptMain.lbxDesktopsSelectionChange(
+  Sender: TObject; User: boolean);
+var
+  lSelDt: TCustomDesktopOpt;
+
+begin
+  if lbxDesktops.Itemindex <0 then exit; // No selection
+  lSelDt := TCustomDesktopOpt(lbxDesktops.Items.Objects[lbxDesktops.Itemindex]);
+  lblDsktpInfo.caption := format(rsDesktopInfoComatible,[booltostr(lSelDt.Compatible,'X','-')]);
+  lblDsktpInfo.caption := lblDsktpInfo.caption+#9+format(rsDesktopInfoIsDocked,[booltostr(lSelDt.IsDocked,'X','-')]);
+end;
+
+var lIdx:integer;
+   lDiff:boolean;
+
+procedure TfrmTestEnvironmentOptMain.tmrUpdateTimer(Sender: TObject);
+
+var
+  lIsEqual: Boolean;
+begin
+  if not assigned(FEnvironmentOptions) then exit;
+  lIsEqual:= FEnvironmentOptions.Desktops.Count = lbxDesktops.Count;
+  if lIsEqual and (FEnvironmentOptions.Desktops.Count>0) then
+    begin
+      lIdx := (lidx + 1) mod FEnvironmentOptions.Desktops.Count;
+      lIsEqual:= FEnvironmentOptions.Desktops[lIdx] = TCustomDesktopOpt(lbxDesktops.Items.Objects[lidx]);
+    end;
+  if not lDiff and not lisEqual then
+    UpdateDesktopList(sender); // This event is only fired once after a difference is detected;
+  ldiff := not lisEqual;
+end;
+
+procedure TfrmTestEnvironmentOptMain.UpdateDesktopList(Sender:Tobject);
+var
+  p: TCustomDesktopOpt;
+begin
+  lbxDesktops.clear;
+  for pointer(p) in FEnvironmentOptions.Desktops do
+    lbxDesktops.AddItem(p.Name, p);
+end;
+
 procedure TfrmTestEnvironmentOptMain.ActivateInplaceEditor;
 begin
-  edtDesktopName.top := ListBox1.ItemRect(ListBox1.ItemIndex).top+ListBox1.top-1;
-  edtDesktopName.Text:=ListBox1.Items[ListBox1.ItemIndex];
-  edtDesktopName.tag:=ptrint(ListBox1.Items.Objects[ListBox1.ItemIndex]);
+  edtDesktopName.top := lbxDesktops.ItemRect(lbxDesktops.ItemIndex).top+lbxDesktops.top-1;
+  edtDesktopName.Text:=lbxDesktops.Items[lbxDesktops.ItemIndex];
+  edtDesktopName.tag:=ptrint(lbxDesktops.Items.Objects[lbxDesktops.ItemIndex]);
   edtDesktopName.visible := true;
 end;
 

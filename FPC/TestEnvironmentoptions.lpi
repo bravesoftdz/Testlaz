@@ -10,8 +10,24 @@
       <ResourceType Value="res"/>
       <UseXPManifest Value="True"/>
       <Icon Value="0"/>
+      <Resources Count="10">
+        <Resource_0 FileName="..\..\LazTrunc_\images\actions\arrow_down.png" Type="RCDATA" ResourceName="ARROW_DOWN"/>
+        <Resource_1 FileName="..\..\LazTrunc_\images\actions\arrow_up.png" Type="RCDATA" ResourceName="ARROW_UP"/>
+        <Resource_2 FileName="..\..\LazTrunc_\images\actions\laz_add.png" Type="RCDATA" ResourceName="LAZ_ADD"/>
+        <Resource_3 FileName="..\..\LazTrunc_\images\actions\laz_delete.png" Type="RCDATA" ResourceName="LAZ_DELETE"/>
+        <Resource_4 FileName="..\..\LazTrunc_\images\actions\laz_edit.png" Type="RCDATA" ResourceName="LAZ_EDIT"/>
+        <Resource_5 FileName="..\..\LazTrunc_\images\actions\laz_export.png" Type="RCDATA" ResourceName="LAZ_EXPORT"/>
+        <Resource_6 FileName="..\..\LazTrunc_\images\actions\laz_save.png" Type="RCDATA" ResourceName="LAZ_SAVE"/>
+        <Resource_7 FileName="..\..\LazTrunc_\images\actions\laz_tick.png" Type="RCDATA" ResourceName="LAZ_TICK"/>
+        <Resource_8 FileName="..\..\LazTrunc_\images\debugger\debugger.png" Type="RCDATA" ResourceName="DEBUGGER"/>
+        <Resource_9 FileName="..\..\LazTrunc_\images\actions\laz_cancel.png" Type="RCDATA" ResourceName="LAZ_CANCEL"/>
+      </Resources>
     </General>
     <LazDoc Paths="..\FPDoc"/>
+    <i18n>
+      <EnableI18N Value="True"/>
+      <OutDir Value="..\language"/>
+    </i18n>
     <BuildModes Count="3">
       <Item1 Name="Default" Default="True"/>
       <Item2 Name="Debug">
