@@ -1,7 +1,7 @@
 object frmTestEnvironmentOptMain: TfrmTestEnvironmentOptMain
-  Left = 0
+  Left = 521
   Height = 255
-  Top = 0
+  Top = 780
   Width = 536
   ActiveControl = btnLoadEnv
   Caption = 'frmTestEnvironmentOptMain'
@@ -9,7 +9,7 @@ object frmTestEnvironmentOptMain: TfrmTestEnvironmentOptMain
   ClientWidth = 536
   OnCreate = FormCreate
   OnDestroy = FormDestroy
-  Visible = False
+  LCLVersion = '1.9.0.0'
   object btnLoadEnv: TButton
     Left = 8
     Height = 25
