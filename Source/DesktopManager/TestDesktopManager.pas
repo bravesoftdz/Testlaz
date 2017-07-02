@@ -19,8 +19,9 @@ type
         procedure SetUp; override;
         procedure TearDown; override;
     published
-        destructor Destroy; override;
         procedure TestSetUp;
+    public
+        destructor Destroy; override;
     end;
 
 implementation

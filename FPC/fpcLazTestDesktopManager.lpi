@@ -140,12 +140,12 @@
     <Version Value="11"/>
     <PathDelim Value="\"/>
     <Target>
-      <Filename Value="TestEnvironmentoptions"/>
+      <Filename Value="..\..\bin\$(TargetCPU)-$(TargetOS)\$Nameonly($Project(Infofile))"/>
     </Target>
     <SearchPaths>
       <IncludeFiles Value="$(ProjOutDir);..\..\LazTrunc_\ide;..\..\LazTrunc_\ide\include;..\..\LazTrunc_\ide\include\$(TargetOS)"/>
       <OtherUnitFiles Value="..\Source\DesktopManager;..\..\LazTrunc_\ide"/>
-      <UnitOutputDirectory Value="lib\$(TargetCPU)-$(TargetOS)"/>
+      <UnitOutputDirectory Value="..\..\bin\$(TargetCPU)-$(TargetOS)\units"/>
     </SearchPaths>
     <Linking>
       <Options>
