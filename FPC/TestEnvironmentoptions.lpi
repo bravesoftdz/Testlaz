@@ -111,24 +111,27 @@
         <FormatVersion Value="1"/>
       </local>
     </RunParams>
-    <RequiredPackages Count="5">
+    <RequiredPackages Count="6">
       <Item1>
-        <PackageName Value="DebuggerIntf"/>
+        <PackageName Value="rx"/>
       </Item1>
       <Item2>
-        <PackageName Value="IDEIntf"/>
+        <PackageName Value="DebuggerIntf"/>
       </Item2>
       <Item3>
-        <PackageName Value="LCLBase"/>
+        <PackageName Value="IDEIntf"/>
       </Item3>
       <Item4>
-        <PackageName Value="CodeTools"/>
+        <PackageName Value="LCLBase"/>
       </Item4>
       <Item5>
-        <PackageName Value="LCL"/>
+        <PackageName Value="CodeTools"/>
       </Item5>
+      <Item6>
+        <PackageName Value="LCL"/>
+      </Item6>
     </RequiredPackages>
-    <Units Count="4">
+    <Units Count="5">
       <Unit0>
         <Filename Value="TestEnvironmentoptions.lpr"/>
         <IsPartOfProject Value="True"/>
@@ -153,6 +156,10 @@
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="DesktopManager"/>
       </Unit3>
+      <Unit4>
+        <Filename Value="C:\unt_cdate.pas"/>
+        <IsPartOfProject Value="True"/>
+      </Unit4>
     </Units>
   </ProjectOptions>
   <CompilerOptions>

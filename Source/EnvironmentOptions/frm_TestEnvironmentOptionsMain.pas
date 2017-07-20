@@ -5,8 +5,8 @@ unit frm_TestEnvironmentOptionsMain;
 interface
 
 uses
-  Classes, SysUtils, FileUtil, Forms, Controls, Graphics, Dialogs, StdCtrls,
-  Buttons, ExtCtrls,
+  Classes, SysUtils, FileUtil, MRUList, Forms, Controls, Graphics, Dialogs,
+  StdCtrls, Buttons, ExtCtrls,
   // lazarus
   EnvironmentOpts,DesktopManager;
 
@@ -26,6 +26,7 @@ type
     lblDsktpInfo: TLabel;
     lblCInfo: TLabel;
     lbxDesktops: TListBox;
+    MRUManager1: TMRUManager;
     tmrUpdate: TTimer;
     procedure btnDeleteDTClick(Sender: TObject);
     procedure btnLoadEnvClick(Sender: TObject);
